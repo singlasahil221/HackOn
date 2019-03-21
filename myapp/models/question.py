@@ -22,6 +22,7 @@ class UserProfile(BaseModel):
 
 	class Meta:
 		ordering = ['-total_score', 'total_time_taken', 'total_wrong_attempts']
+		
 	def __str__(self): 
 		return self.user.username 
 

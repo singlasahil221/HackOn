@@ -13,10 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+
+
 from django.contrib import admin
-from django.urls import path, include
-from myapp import urls
+from django.urls import path, include, re_path
+from myapp.views.home import *
+from myapp.views.questions import *
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include(urls)),
+    path('home/', Home),
+    path('leaderboard/',Leaderboard),
+    path('developers/', Developers),
+    path('tasks/',Tasks),
+    re_path(r'^level/(?P<level>\d{1-10})/$', Fetch_Question),
 ]

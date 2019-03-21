@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Hackon | Tasks</title>
+{% endblock%}
+
+
+
+{% block body %}
+<ul>
+	{% for item in task %}
+		<ul>
+			<li>{{ item.level }}</li>
+			<li>{{ item.status }}</li>
+		</ul>
+	{% endfor %}
+</ul>
+{% endblock %}
