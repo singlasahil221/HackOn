@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from myapp import urls
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -25,4 +27,4 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView, name='logout'),
     path('auth/', include('social_django.urls', namespace='social')),
     path('',include(urls)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

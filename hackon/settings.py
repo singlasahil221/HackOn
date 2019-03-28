@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PROJECT_DIR = os.path.dirname(__file__)
 
 # Application definition
 
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'social_django',
-    
+    'admin_auto_filters'
 ]
 
 MIDDLEWARE = [
@@ -130,14 +131,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, 'static'),
+)
 
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/home'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='877098172230-osq8jol5jin2oge9o39h1lf90tll5rdf.apps.googleusercontent.com' 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HR_5nQSpgCE47pR-QkRokzwV'
-
 
 
 

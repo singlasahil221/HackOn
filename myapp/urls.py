@@ -19,12 +19,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from myapp.views.home import *
-from myapp.views.questions import *
+from myapp.views.question_views import *
 
 urlpatterns = [
     path('home/', Home),
     path('leaderboard/',Leaderboard),
     path('developers/', Developers),
-    path('tasks/',Tasks),
-    re_path(r'^level/(?P<level>\d{1-10})/$', Fetch_Question),
+    path('task/',tasks),
+    re_path(r'^task/(?P<level>[0-9]{1,2})/$', fetch_question),
+    re_path(r'^task/(?P<level>[0-9]{1,2})/answer/$', answer_submission),
+
 ]

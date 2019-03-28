@@ -1,0 +1,136 @@
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from myapp.models.schema_file import *
+from myapp.serializers.modelsSerializers import *
+from datetime import datetime, timedelta
+import pytz
+
+utc=pytz.UTC
+
+
+@login_required
+def tasks(request):
+	all_taks_status = Question.objects.all().values('level','status').distinct()
+	return render(request, 'tasks.html', {'task':all_taks_status})
+
+
+
+@login_required
+def question(request):
+	return render(request, 'questions.html', {})
+
+
+# -------     alot question to the user     -------- #
+
+@login_required
+def fetch_question(request, level):
+	message = "Unlocked!"
+	user_question_obj = None
+
+	#check if user profile already exists
+	try:
+		user_profile_obj = UserProfile.objects.get(user=request.user)
+
+	except ObjectDoesNotExist:
+		user_profile_obj = UserProfile(user = request.user)
+		user_profile_obj.save()
+
+	# if user is already alotted a question on that level
+	try:
+		user_question_obj = UserQuestion.objects.get(user = user_profile_obj, level = level)
+		serializers = UserQuestionSerializer(user_question_obj)
+		user_question_obj = serializers.data
+
+	#alot a question to the user for that level
+	except ObjectDoesNotExist:
+		try:
+			queryset = Question.objects.filter(level = level)
+			if(queryset[0].status == 'UNLOCKED'):
+				mod_value = max(1,level-2)
+				index = UserQuestion.objects.filter(level = level).count() % mod_value
+				user_question_obj = UserQuestion.objects.create(user = request.user, level = level, question = queryset[index])
+				user_question_obj.save()
+				serializers = UserQuestionSerializer(user_question_obj)
+				user_question_obj = serializers.data
+			#if level is locked return the message  = locked	
+			else:
+				message = "Locked!"
+		except IndexError:
+			message = "Level Locked!"
+	
+	return JsonResponse({'question' : user_question_obj,'message' : message})
+
+
+
+# ------- Answer Submission   ------- #
+
+@login_required
+def answer_submission(request,level):
+
+	message = "Submitted"
+	user_submission_obj = None
+	#check if question is unlocked and alotted to the user
+	try:
+		user_obj = request.user
+		user_profile_obj = UserProfile.objects.get(user = user_obj)
+		user_question_obj = UserQuestion.objects.get(user = user_profile_obj, level = level)
+		question_obj = user_question_obj.question
+		answer = request.POST.get('answer','')
+
+		#answer = lower(answer)
+
+		user_submission_obj = UserSubmission(user = user_profile_obj, question = question_obj, answer = answer)
+		
+
+		#check if user already submitted the correct answer, then it will not affect other models and answer will not be considered for marking
+		if user_question_obj.marks_obtained == 0:
+
+			if(question_obj.answer == answer):
+
+				marks_obtained = max(0,question_obj.maximum_marks - user_question_obj.wrong_attempts)
+
+				#update user submission table for logs
+				user_submission_obj.status = "AC"
+				user_submission_obj.marks = marks_obtained
+
+				#update user question table for user individual marks maintainance
+				user_question_obj.marks_obtained = marks_obtained
+				user_question_obj.time_taken = datetime.now().replace(tzinfo=None) - user_question_obj.created_at.replace(tzinfo=None)
+
+				#update total profile score
+				user_profile_obj.total_score += marks_obtained
+				user_profile_obj.total_time_taken += user_question_obj.time_taken
+				user_profile_obj.total_wrong_attempts += user_question_obj.wrong_attempts
+
+
+				#update maximum marks of the question on the correct submission
+				question_obj.maximum_marks = max(question_obj.maximum_marks-5, question_obj.minimum_marks)
+
+			#mark the entry in log table, and increase wront answer count
+			else:
+
+				user_submission_obj.status = "WA"
+				user_question_obj.wrong_attempts += 1
+
+		#for already submitted question, the answer will be only recorded in the logs table
+		else:
+			message = "Already Submitted!"
+
+			if(question_obj.answer == answer):
+				user_submission_obj.status = "AC"
+				user_submission_obj.marks = user_question_obj.marks_obtained
+
+			else:
+				user_submission_obj.status = "WA"
+
+		user_profile_obj.save()
+		user_submission_obj.save()
+		user_question_obj.save()
+		question_obj.save()
+
+	except ObjectDoesNotExist:
+		message = "Can not Submit!"
+
+	return JsonResponse({"message" : message, "status" : user_submission_obj.status})

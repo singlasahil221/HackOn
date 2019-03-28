@@ -17,7 +17,7 @@ class UserProfile(BaseModel):
 	total_wrong_attempts 	= 	models.PositiveIntegerField(default = 0)
 	total_time_taken 		= 	models.DurationField(default = timedelta)
 	total_score 			= 	models.PositiveIntegerField(default = 0)
-	user 					= 	models.ForeignKey(User, on_delete = models.CASCADE)
+	user 					= 	models.OneToOneField(User, on_delete = models.CASCADE)
 	# for directly arranging the leaderboard
 
 	class Meta:

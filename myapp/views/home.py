@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from myapp.models.question import *
+from myapp.models.schema_file import *
 
 
 
@@ -21,7 +21,7 @@ def Home(request):
 
 def Leaderboard(request):
 	all_user = UserProfile.objects.all()
-	print(all_user)
+	#print(all_user)
 	return render(request, 'leaderboard.html', {'users':all_user})
 
 
