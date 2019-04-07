@@ -22,11 +22,10 @@ from myapp.views.home import *
 from myapp.views.question_views import *
 
 urlpatterns = [
-    path('home/', Home),
+    path('', Home),
     path('leaderboard/',Leaderboard),
     path('developers/', Developers),
     path('task/',tasks),
-    re_path(r'^task/(?P<level>[0-9]{1,2})/$', fetch_question),
-    re_path(r'^task/(?P<level>[0-9]{1,2})/answer/$', answer_submission),
+    re_path(r'^task/(?P<level>[0-9]{1,2})/$', solve_question),
 
 ]

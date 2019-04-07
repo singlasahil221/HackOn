@@ -7,3 +7,9 @@ from myapp.models.schema_file import *
 
 
 
+def solution1(user_question_obj, dict_obj):
+	username = dict_obj('username','')
+	password = dict_obj('password','')
+	if username and username == '' and password and password == '':
+		return True
+	return False

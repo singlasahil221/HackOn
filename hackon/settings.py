@@ -25,7 +25,7 @@ SECRET_KEY = 'ureka_hy%4-p6#ss$+1h25xjti8#u1=a31r=ufeham(%yj(^t4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 PROJECT_DIR = os.path.dirname(__file__)
 
@@ -87,12 +87,37 @@ WSGI_APPLICATION = 'hackon.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+
+
+# DATABASES = {
+#     'default': {         
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd6i181nj6s9jiu',
+#         'USER': 'nbjexgcpybsbcc',
+#         'PASSWORD': '783ab46b6b511c2cd739494a23271bd16aa9b30c62996a44beb265504f44f779',
+#         'HOST': 'ec2-23-23-226-190.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {         
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd861vu0cild97b',
+        'USER': 'dtxwhcplztigkd',
+        'PASSWORD': '00a8f205ad3514043a629139c9348fd4c3a0dc983a5d77f33fbe0e0abde0ad0d',
+        'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+#}
 
 
 # Password validation
@@ -139,9 +164,19 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/home'
+#media files
 
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+
+
+
+
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/task/'
+LOGOUT_REDIRECT_URL = '/'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='877098172230-osq8jol5jin2oge9o39h1lf90tll5rdf.apps.googleusercontent.com' 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HR_5nQSpgCE47pR-QkRokzwV'
 

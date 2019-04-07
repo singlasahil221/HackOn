@@ -3,45 +3,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{% block head %}
-
-	{% endblock %}
-	
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-}
-</style>
+  <title>{% block title%}{% endblock %}</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% ifequal level "3" %}
+<script>
+  var my_answer;
+  function validate() {
+    my_answer = 20;
+    var answer = $("form").find("input[type='text']");
+    if(answer === my_answer)
+      return true;
+    else 
+    {
+      alert("Wrong Answer!");
+      return true;
+    }
+    console.log(answer[0].value);
+  }
+</script>
+{% endifequal %}
 </head>
 <body>
+  <canvas id="c"></canvas>
+  <div class="maindiv">
+    <div class="header">
+      <div >
+        <img class='logo' src="{% static 'assets1/Group 200.png' %}"/>
+      </div>
+      <div class="nav">
+        <a href="/"><p class="item">Home</p></a>
+        <a href="/developers/"><p class="item">Developers</p></a>
+        <a href="/task/"><p class="item">Task</p></a>
+        <a href="/leaderboard/"><p class="item">Leaderboards</p></a>
+          {% if request.user.is_authenticated %}
+        <a href="/logout/"><p class="item"><span class="power" style="color:white;">&#x23FB;</span></p></a>
+        {% endif %}
+      </div>
+    </div>
+    {% block body%}
 
-<ul>
-  <li><a href="/home/">Home</a></li>
-  <li><a href="/developers/">Developers</a></li>
-  <li><a href="/leaderboard/">Leaderboard</a></li>
-  <li><a href="/task/">Tasks</a></li>
-</ul> 
-	{% block body%}
+    {% endblock %}
 
-	{% endblock %}
+  </div>
+
+  <script type="text/javascript" src="{% static 'javascript/backdrop.js' %}">
+  </script>
 
 </body>
 </html>

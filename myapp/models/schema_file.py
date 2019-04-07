@@ -2,6 +2,7 @@ from django.db import models
 from myapp.models.base import BaseModel
 from datetime import datetime, timedelta
 from django.contrib.auth.models import User
+from uuid import uuid4
 """
 Winner will be declare on the basis of following :
 	1. Maximum Scoring contestent
@@ -9,6 +10,11 @@ Winner will be declare on the basis of following :
 	3. Minimum Wrong attempts
 
 """
+
+
+def _generate_unique_uri():
+    """Generates a unique uri for the chat session."""
+    return str(uuid4()).replace('-', '')[:15]
 
 
 
@@ -37,12 +43,12 @@ class Question(BaseModel):
 						)
 
 	level 			= 	models.PositiveIntegerField(default = 1)
-	question_id 	= 	models.CharField(max_length = 100)
+	question_id 	= 	models.CharField(max_length = 100,default=_generate_unique_uri)
 	title 			= 	models.CharField(max_length = 100)
 	statement 		= 	models.TextField(max_length = 10000)
 	answer			=	models.CharField(max_length = 100)
-	maximum_marks 	= 	models.PositiveIntegerField(default = 500)
-	minimum_marks 	=   models.PositiveIntegerField(default = 0)
+	maximum_marks 	= 	models.IntegerField(default = 500)
+	minimum_marks 	=   models.IntegerField(default = 0)
 	status			= 	models.CharField(max_length = 20, choices = status_choices)
 
 	class Meta: 
@@ -85,8 +91,8 @@ class UserSubmission(BaseModel):
 
 	user 			= 	models.ForeignKey(UserProfile,on_delete = models.CASCADE)
 	question		=   models.ForeignKey(Question, on_delete = models.CASCADE)
-	answer 			=	models.CharField(max_length = 10)
-	status 			= 	models.CharField(max_length = 10, choices = status_choices)
+	answer 			=	models.CharField(max_length = 100)
+	status 			= 	models.CharField(max_length = 100, choices = status_choices)
 	marks 			= 	models.PositiveIntegerField(default = 0)
 	class Meta:
 		ordering    =  ["created_at"]

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+task
+{% endblock%}
+
+
+
+{% block body %}
+
+{% ifnotequal message "" %}
+  {% ifequal message "AC" %}
+    <div class="alert alert-success alert-dismissible fade show offset-md-4 col-md-4 offset-sm-1 col-sm-8" role="alert">
+      <strong>Congratulations! Answer Accepted.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% else %}
+    {% ifequal message "WA" %}
+    <div class="alert alert-danger alert-dismissible fade show offset-md-4 col-md-4 offset-sm-1 col-sm-10" role="alert">
+        <strong>Oops WA! Try again.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endifequal%}
+  {% endifequal%}
+{% endifnotequal%}
+<div class="questioncontent">
+      <a href="https://xunbao.elementsculmyca.com" target="_blank" >
+        <div class="xunbaodiv">
+        <p class="goto" >GO TO</p>
+        <img class="xunbao" src="{% static 'assets2/xunbao.png' %}" />
+        </div>
+      </a>
+      <div class="quesbox">
+        <div class="quesbox2">
+          <center>
+            <div id="question-body">
+              <br>
+                {% ifequal message "Locked" %}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Level Locked!</strong>
+                  </div>
+                {%else%}
+                  <div><h1>{{question.question__title}}</h1><h6><sub>Maximum Marks : {{ question.question__maximum_marks }} &nbsp;&nbsp;  Wrong attempts : {{question.wrong_attempts}}</sub></h6><br></div>
+                  <center><div id="statement"></div></center><br>
+                
+                  {% ifnotequal level "1" %}
+                  <form method="post" onsubmit='{%ifequal level "3" %}return validate(){% endifequal%}'>
+                    {% csrf_token %}
+                    <span for="mobile"><h4>Make Submission</h4></span>
+                    
+                    <input type="text" name="answer" placeholder="iamhacker">&nbsp;&nbsp;
+                    <input class="btn btn-primary" type="submit" name="submit">
+                    <br><br>
+                  </form>
+                  {% endifnotequal %}
+                {% endifequal%}
+            </div>
+          </center>
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+
+<script>
+var myJSONList = (("{{question.question__statement|escapejs}}").replace(/&(l|g|quo)t;/g, function(a,b){
+                return {
+                    l   : '<',
+                    g   : '>',
+                    quo : '"'
+                }[b];
+            }));
+$("#statement").append(myJSONList);
+my_answer = 10;
+var csrf_token = '{{csrf_token}}';
+ 
+</script>
+{% endblock %}

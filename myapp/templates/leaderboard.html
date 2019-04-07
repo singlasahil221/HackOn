@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load custom_tags %}
 
 {% block head %}
 
@@ -11,13 +11,24 @@
 
 {% block body %}
 
-<ul>
-	{% for user in users %}
-	<ul>
-		<li>{{user.user.username}}</li>
-		<li>{{user.total_score}}</li>
-	</ul>
-	{% endfor %}
-</ul>
+
+
+<div class="timer" id="timer" style=""></div>
+<div class="leaderboard">
+			<div class="leaderheader">
+				<p class="headeritems">Rank</p>
+				<p class="headeritems">Name</p>
+				<p class="headeritems">Time Taken(HH:MM:SS)</p>
+				<p class="headeritems">Score</p>
+			</div>
+			{% for user in users %}
+			<div onload="changeColor(1);" style="{% if request.user == user.user %}background-color: #000; {% endif %}" class="leader">
+				<p class="leaderitem">{{ forloop.counter }}</p>
+				<p class="leaderitem">{{user.user.username}}</p>
+				<p class="leaderitem ">{{user.total_time_taken|duration}}</p>
+				<p class="leaderitem">{{user.total_score}}</p>
+			</div>
+			{% endfor %}
+</div>
 
 {% endblock %}

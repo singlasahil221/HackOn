@@ -1,15 +1,25 @@
 
 {% extends 'base.html' %}
-
+{% load static %}
 {% block head %}
 <title>HackOn | Home</title>
 {% endblock%}
 
 
 {% block body %}
+{% if not request.user.is_authenticated %}
 
-<p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-  
+  <center><a href="{% url 'social:begin' 'google-oauth2' %}"><img style="height: 5vw;" src="{% static 'images/google-login.png'%}"></a></center><br>
+{% endif %}
+<div class="container" style="font-size:1vw;">
+	Leaderboard Criteria :
+  <p class="text-primary">
+  	<ul style="list-style-type:disc;">
+  		<li>Adoption of wrong means(asking/telling answers to other players, handing over the clue to other player) shall lead to immediate disqualification.</li>
+		<li>Maximum Scorer Wins the game. Incase of multiple maximum scorer, the one who took lesser time will be consider as winner.</li>
+		<li>Minimum Wrong attempts</li>
+  	</ul>
+  </p>
+</div>
 
 {% endblock %}

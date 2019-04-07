@@ -16,10 +16,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class UserQuestionSerializer(serializers.ModelSerializer):
 	question__title  	 = serializers.CharField(source='question.title')
 	question__statement  = serializers.CharField(source='question.statement')
+	question__maximum_marks  = serializers.IntegerField(source='question.maximum_marks')
 
 	class Meta:
 		model 			 = UserQuestion
-		fields 			 = ('id', 'level', 'marks_obtained', 'question__title', 'question__statement')
+		fields 			 = ('id', 'level','wrong_attempts', 'marks_obtained', 'question__title', 'question__statement','question__maximum_marks')
 
 
 

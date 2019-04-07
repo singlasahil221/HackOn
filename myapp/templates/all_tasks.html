@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<title>Hackon | Tasks</title>
+{% endblock%}
+
+
+
+{% block body %}
+
+<div class="stickers">
+			<a href="/task/{{task.0.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="one" class="task">Task 1</p>
+					
+					{% if task.0 in hacked_tasks %}
+						<p id="unlocked"class="hacked">HACKED</p>
+						{% for i in hacked %}
+							{% if i.question.level == task.0.level %}
+								<p style="text-decoration: none;color:white;font-size: 1vw;">Score : {{i.marks_obtained}}/100</p>
+							{% endif %}
+						{% endfor %}
+					{% else %}
+
+						{% ifequal task.0.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.1.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="two" class="task">Task 2</p>
+					{% if task.1 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.1.level %}
+							<p class="score" style="text-decoration: none;color:white;font-size:1rem;">&nbsp;&nbsp;Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+					{% else %}
+
+						{% ifequal task.1.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.2.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="three" class="task">Task 3</p>
+					{% if task.2 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+							{% if i.question.level == task.2.level %}
+								<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+							{% endif %}
+						{% endfor %}
+
+					{% else %}
+
+						{% ifequal task.2.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.3.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="four" class="task">Task 4</p>
+					{% if task.3 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.3.level %}
+							<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+
+					{% else %}
+
+						{% ifequal task.3.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<br>
+			<br><br>
+			<a href="/task/{{task.4.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="five" class="task">Task 5</p>
+					{% if task.4 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.4.level %}
+							<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+
+					{% else %}
+
+						{% ifequal task.4.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.5.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="six" class="task">Task 6</p>
+					{% if task.5 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.5.level %}
+							<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+					{% else %}
+
+						{% ifequal task.5.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.6.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="seven" class="task">Task 7</p>
+					{% if task.6 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.6.level %}
+							<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+					{% else %}
+
+						{% ifequal task.6.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.7.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="one" class="task">Task 8</p>
+					{% if task.7 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.7.level %}
+							<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+					{% else %}
+
+						{% ifequal task.7.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.8.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="two"class="task">Task 9</p>
+					{% if task.8 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.8.level %}
+							<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+					{% else %}
+
+						{% ifequal task.8.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+			<a href="/task/{{task.9.level}}" style="text-decoration: none;">
+				<div class="stickerdiv">
+					<img class="sticker" src="{% static 'assets1/5.png' %}"/>
+					<p id="three" class="task">Task 10</p>
+					{% if task.9 in hacked_tasks %}
+					<p id="unlocked"class="hacked">HACKED</p>
+					{% for i in hacked %}
+						{% if i.question.level == task.9.level %}
+							<p style="text-decoration: none;color:white;">Score : {{i.marks_obtained}}/100</p>
+						{% endif %}
+					{% endfor %}
+					{% else %}
+
+						{% ifequal task.9.status "UNLOCKED" %}
+							<p id="one" class="status">Status: Pending</p>
+						{% else %}
+							<p id="one" class="status">Status: Locked</p>
+						{% endifequal %}
+					{% endif %}
+				</div>
+			</a>
+
+		</div>
+		
+	</div>
+
+{% endblock %}
