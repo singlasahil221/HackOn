@@ -101,23 +101,23 @@ WSGI_APPLICATION = 'hackon.wsgi.application'
 # }
 
 
+# DATABASES = {
+#     'default': {         
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd861vu0cild97b',
+#         'USER': 'dtxwhcplztigkd',
+#         'PASSWORD': '00a8f205ad3514043a629139c9348fd4c3a0dc983a5d77f33fbe0e0abde0ad0d',
+#         'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {         
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd861vu0cild97b',
-        'USER': 'dtxwhcplztigkd',
-        'PASSWORD': '00a8f205ad3514043a629139c9348fd4c3a0dc983a5d77f33fbe0e0abde0ad0d',
-        'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
-        'PORT': '5432',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-#}
 
 
 # Password validation
