@@ -71,11 +71,11 @@ HackOn | Task {{question.level}}
                   <center><div id="statement"></div></center><br>
                 
                   {% ifnotequal level "1" %}
-                  <form method="post" onsubmit='{%ifequal level "3" %}return validate(){% endifequal%}'>
+                  <form method="post" onsubmit='{%ifequal level "6" %}return validate(){% endifequal%}'>
                     {% csrf_token %}
                     <span for="mobile"><h4>Make Submission</h4></span>
                     
-                    <input type="text" name="answer" placeholder="iamhacker">&nbsp;&nbsp;
+                    <input type="text" name="answer" id="answer" placeholder="iamhacker" required>&nbsp;&nbsp;
                     <input class="btn btn-primary" type="submit" name="submit">
                     <br><br>
                   </form>
@@ -89,6 +89,12 @@ HackOn | Task {{question.level}}
     <br><br><br>
 
 <script>
+  
+  window.onload = function(){
+    document.getElementById("answer").value='';
+};
+  
+  
 var myJSONList = (("{{question.question__statement|escapejs}}").replace(/&(l|g|quo)t;/g, function(a,b){
                 return {
                     l   : '<',
