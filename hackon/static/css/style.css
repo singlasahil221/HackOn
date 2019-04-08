@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Sriracha');
 @import url('https://fonts.googleapis.com/css?family=Iceberg|Josefin+Sans');
-@import url('static/fonts/segoepr.ttf');
-@import url('static/fonts/serif.ttf');
+@import url('/static/fonts/segoepr.ttf');
+@import url('/static/fonts/serif.ttf');
 
 ::-webkit-scrollbar {
   width: 10px;

@@ -33,3 +33,8 @@ Twisted==18.9.0
 txaio==18.8.1
 urllib3==1.24.1
 zope.interface==4.6.0
+<<<<<<< HEAD
+=======
+whitenoise<=4.1.2
+gunicorn
+>>>>>>> b99f57fa346e4d74c196a2cbfb7e9a5962e7948f
