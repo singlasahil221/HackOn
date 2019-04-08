@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="340.598" height="386.5" viewBox="0 0 340.598 386.5">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="-0.218" x2="0.5" y2="-0.01" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a76969"/>
+      <stop offset="0.782" stop-color="#fbfbfb"/>
+      <stop offset="1" stop-color="#e8dddd"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="-0.013" x2="0.5" y2="0.992" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.297" stop-color="#fff"/>
+      <stop offset="1" stop-color="#948989"/>
+      <stop offset="1" stop-color="#939393"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_200" data-name="Group 200" transform="translate(601 754)">
+    <g id="Group_144" data-name="Group 144" transform="translate(-650.323 -952)">
+      <g id="Group_143" data-name="Group 143" transform="translate(49.323 198)">
+        <path id="Path_106" data-name="Path 106" d="M177.716,198v66.3h-66.3V198H83V368.489h28.415v-66.3h66.3v66.3h31.572V198Z" transform="translate(23.326 -198)" fill="url(#linear-gradient)"/>
+        <g id="Group_142" data-name="Group 142" transform="translate(0 170.489)">
+          <path id="Path_107" data-name="Path 107" d="M252,252l21.113,47.358H163.367L183.491,252H153.7L49.323,365.659h83.915l21.2-47.358H282.86l23.145,47.358h83.915L281.737,252Z" transform="translate(-49.323 -252)" fill="url(#linear-gradient-2)"/>
+        </g>
+      </g>
+    </g>
+    <text id="HACKON" transform="translate(-597.5 -412.5)" fill="#fff" stroke="#fff" stroke-width="1" font-size="53" font-family="MyanmarText-Bold, Myanmar Text" font-weight="700" letter-spacing="0.4em"><tspan x="0" y="0">HACKON</tspan></text>
+  </g>
+</svg>
