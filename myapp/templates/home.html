@@ -1,8 +1,9 @@
 
 {% extends 'base.html' %}
 {% load static %}
-{% block head %}
-<title>HackOn | Home</title>
+
+{% block title %}
+HackOn | Home
 {% endblock%}
 
 
@@ -11,15 +12,12 @@
 
   <center><a href="{% url 'social:begin' 'google-oauth2' %}"><img style="height: 5vw;" src="{% static 'images/google-login.png'%}"></a></center><br>
 {% endif %}
-<div class="container" style="font-size:1vw;">
-	Leaderboard Criteria :
-  <p class="text-primary">
-  	<ul style="list-style-type:disc;">
-  		<li>Adoption of wrong means(asking/telling answers to other players, handing over the clue to other player) shall lead to immediate disqualification.</li>
-		<li>Maximum Scorer Wins the game. Incase of multiple maximum scorer, the one who took lesser time will be consider as winner.</li>
-		<li>Minimum Wrong attempts</li>
-  	</ul>
-  </p>
+<div class="home">
+	<p class="hackon">HACKON</p>
+	<p class="sponsor">Sponsered by</p>
+	<p class="para">Hack On is a prefest hacking and penetration testing event for Elements Culmyca' 18, the annual cultural and technical fest of YMCA University of Science and Technology, Faridabad.<br></br>
+		Unveil the hacker in you.
+	</p>
 </div>
 
 {% endblock %}

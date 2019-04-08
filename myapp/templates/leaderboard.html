@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load custom_tags %}
 
-{% block head %}
+{% block title %}
 
-<title>HackOn | Leaderboard</title>
+HackOn | Leaderboard
 
 {% endblock%}
 
@@ -11,24 +11,24 @@
 
 {% block body %}
 
+<div class="tboddy2">
+	<table >
+	  <tr>
+	    <th>Rank</th>
+	    <th>Name</th>
+	    <th>Time Taken</th>
+	    <th>Score</th>
+	  </tr>
+	  {% for user in users %}
 
-
-<div class="timer" id="timer" style=""></div>
-<div class="leaderboard">
-			<div class="leaderheader">
-				<p class="headeritems">Rank</p>
-				<p class="headeritems">Name</p>
-				<p class="headeritems">Time Taken(HH:MM:SS)</p>
-				<p class="headeritems">Score</p>
-			</div>
-			{% for user in users %}
-			<div onload="changeColor(1);" style="{% if request.user == user.user %}background-color: #000; {% endif %}" class="leader">
-				<p class="leaderitem">{{ forloop.counter }}</p>
-				<p class="leaderitem">{{user.user.username}}</p>
-				<p class="leaderitem ">{{user.total_time_taken|duration}}</p>
-				<p class="leaderitem">{{user.total_score}}</p>
-			</div>
-			{% endfor %}
+	  <tr style="{% if request.user == user.user %}background-color: #000; {% endif %}">
+	    <td>{{ forloop.counter }}</td>
+	    <td>{{user.user.username}}</td>
+	    <td>{{user.total_time_taken|duration}}</td>
+	    <td>{{user.total_score}}</td>
+	  </tr>			  
+	  {% endfor %}
+	</table>
 </div>
 
 {% endblock %}

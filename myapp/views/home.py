@@ -20,7 +20,7 @@ def Home(request):
 
 
 def Leaderboard(request):
-	all_user = UserProfile.objects.all()
+	all_user = UserProfile.objects.all().exclude(user__is_superuser = True)
 	#print(all_user)
 	return render(request, 'leaderboard.html', {'users':all_user})
 
