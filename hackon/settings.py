@@ -177,8 +177,8 @@ MEDIA_URL = '/media/'
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/task/'
 LOGOUT_REDIRECT_URL = '/'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='877098172230-osq8jol5jin2oge9o39h1lf90tll5rdf.apps.googleusercontent.com' 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HR_5nQSpgCE47pR-QkRokzwV'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='260489749062-krcm5u7oloejiv6mc1iin3ursvl6lktg.apps.googleusercontent.com' 
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ZFIyaJtkEBFdaeGzPtUl1cor'
 
 
 
