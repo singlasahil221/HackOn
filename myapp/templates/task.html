@@ -75,7 +75,7 @@ HackOn | Task {{question.level}}
                     {% csrf_token %}
                     <span for="mobile"><h4>Make Submission</h4></span>
                     
-                    <input type="text" name="answer" placeholder="iamhacker" required>&nbsp;&nbsp;
+                    <input type="text" name="answer" id="answer" placeholder="iamhacker" required>&nbsp;&nbsp;
                     <input class="btn btn-primary" type="submit" name="submit">
                     <br><br>
                   </form>
@@ -91,7 +91,7 @@ HackOn | Task {{question.level}}
 <script>
   
   window.onload = function(){
-    document.getElementByName("answer").value='';
+    document.getElementById("answer").value='';
 };
   
   
