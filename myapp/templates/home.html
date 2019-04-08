@@ -21,7 +21,7 @@ HackOn | Home
 
 {% block body %}
 {% if not request.user.is_authenticated %}
-<blink>Now You See Me</blink>
+      <center><blink><h1>Now You See Me</h1></blink></center>
   <center><a href="{% url 'social:begin' 'google-oauth2' %}"><img style="height: 5vw; display: none;" src="{% static 'images/google-login.png'%}"></a></center><br>
 {% endif %}
 <div class="home">

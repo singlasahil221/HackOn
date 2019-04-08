@@ -17,23 +17,7 @@
   {% block head %}
 
   {% endblock %}
-{% ifequal level "3" %}
-<script>
-  var my_answer;
-  function validate() {
-    my_answer = 20;
-    var answer = $("form").find("input[type='text']");
-    if(answer === my_answer)
-      return true;
-    else 
-    {
-      alert("Wrong Answer!");
-      return true;
-    }
-    console.log(answer[0].value);
-  }
-</script>
-{% endifequal %}
+
 
 </head>
 <body>
