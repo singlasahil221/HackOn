@@ -9,19 +9,19 @@ HackOn | Home
 
 {% block head %}
 <style>
-      blink {
-        animation: blinker 2s linear infinite;
-        color: #1c87c9;
-       }
-      @keyframes blinker {  
-        50% { opacity: 0; }
-       }
-   </style>
+  blink{
+    animation: blinker 1s linear infinite;
+    color: #1c87c9;
+   }
+  @keyframes blinker {  
+    50% { opacity: 0; }
+   }
+</style>
 {% endblock %}
 
 {% block body %}
 {% if not request.user.is_authenticated %}
-<marquee><blink><h2>Now You See Me</h2></blink></marquee>
+<blink>Now You See Me</blink>
   <center><a href="{% url 'social:begin' 'google-oauth2' %}"><img style="height: 5vw; display: none;" src="{% static 'images/google-login.png'%}"></a></center><br>
 {% endif %}
 <div class="home">
