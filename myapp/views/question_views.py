@@ -10,6 +10,7 @@ import json
 from myapp.views.Level import *
 from hackon import settings
 utc=pytz.UTC
+import os
 
 
 @login_required
@@ -172,7 +173,9 @@ def solve_question(request, level):
 
 
 def download_file(request, filename):
-	with open(settings.STATIC_ROOT + '/assets1/'+filename, 'rb+') as fh:
-		response = HttpResponse(fh.read(), content_type="application/force-download")
-		return response
+	if os.path.exists(settings.STATIC_ROOT + '/assets1/'+filename):
+		with open(settings.STATIC_ROOT + '/assets1/'+filename, 'rb+') as fh:
+			response = HttpResponse(fh.read(), content_type="application/force-download")
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(settings.STATIC_ROOT + '/assets1/'+filename)
+			return response
 	return HttpResponse("Server Error")
