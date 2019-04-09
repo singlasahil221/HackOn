@@ -95,7 +95,7 @@ class UserSubmission(BaseModel):
 	status 			= 	models.CharField(max_length = 100, choices = status_choices)
 	marks 			= 	models.PositiveIntegerField(default = 0)
 	class Meta:
-		ordering    =  ["created_at"]
+		ordering    =  ["-created_at"]
 
 	def __str__(self):
 		return "Answer of : " + self.user.user.username

@@ -24,8 +24,7 @@ SECRET_KEY = 'ureka_hy%4-p6#ss$+1h25xjti8#u1=a31r=ufeham(%yj(^t4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*']
 
 PROJECT_DIR = os.path.dirname(__file__)
 
@@ -64,7 +63,6 @@ AUTHENTICATION_BACKENDS = (
  'social_core.backends.open_id.OpenIdAuth',
  'social_core.backends.google.GoogleOpenId',
  'social_core.backends.google.GoogleOAuth2', 
- 
  'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -148,13 +146,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Kolkata'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -184,11 +178,3 @@ LOGIN_REDIRECT_URL = '/task/'
 LOGOUT_REDIRECT_URL = '/'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='260489749062-krcm5u7oloejiv6mc1iin3ursvl6lktg.apps.googleusercontent.com' 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ZFIyaJtkEBFdaeGzPtUl1cor'
-
-
-
-
-
-#git add .
-#git commit -m "message"
-#git push origin google_auth
