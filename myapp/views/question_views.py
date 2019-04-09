@@ -29,22 +29,22 @@ def tasks(request):
 
 
 
-# ------------ admin --------------- #
-@login_required
-def get_question(request, id):
-	if request.method == 'GET':
-		message = 'Server Error'
-		level = id
-		if request.user.is_superuser :
-			question = Question.objects.get(question_id = id)
-			profile = UserProfile.objects.get(user = request.user)
-			user_question_obj = UserQuestion.objects.create(user = profile, question = question, level = 1)
-			user_question_obj.save()
-			print(user_question_obj)
-			serializers = UserQuestionSerializer(user_question_obj)
-			user_question_obj = serializers.data
-			return render(request,"task.html",{'question' : user_question_obj,'message' : message,'level':level})
-		return HttpResponse(message)
+# # ------------ admin --------------- #
+# @login_required
+# def get_question(request, id):
+# 	if request.method == 'GET':
+# 		message = 'Server Error'
+# 		level = id
+# 		if request.user.is_superuser :
+# 			question = Question.objects.get(question_id = id)
+# 			profile = UserProfile.objects.get(user = request.user)
+# 			user_question_obj = UserQuestion.objects.create(user = profile, question = question, level = 1)
+# 			user_question_obj.save()
+# 			print(user_question_obj)
+# 			serializers = UserQuestionSerializer(user_question_obj)
+# 			user_question_obj = serializers.data
+# 			return render(request,"task.html",{'question' : user_question_obj,'message' : message,'level':level})
+# 		return HttpResponse(message)
 
 
 
