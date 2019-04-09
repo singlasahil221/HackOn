@@ -104,7 +104,7 @@ def solve_question(request, level):
 
 					#update user question table for user individual marks maintainance
 					user_question_obj.marks_obtained = marks_obtained
-					user_question_obj.time_taken = datetime.now().replace(tzinfo=None) - user_question_obj.created_at.replace(tzinfo=None)
+					user_question_obj.time_taken = datetime.now().replace(tzinfo=None) - user_question_obj.question.updated_at.replace(tzinfo=None)
 
 					#update total profile score
 					user_profile_obj.total_score += marks_obtained
