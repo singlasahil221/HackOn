@@ -27,5 +27,6 @@ urlpatterns = [
     path('developers/', Developers),
     path('task/',tasks),
     re_path(r'^task/(?P<level>[0-9]{1,2})/$', solve_question),
+    re_path(r'^task/(?P<id>\w+)/$', get_question),
 
 ]

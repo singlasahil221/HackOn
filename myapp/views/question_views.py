@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from myapp.models.schema_file import *
@@ -29,6 +29,30 @@ def tasks(request):
 
 
 
+# ------------ admin --------------- #
+@login_required
+def get_question(request, id):
+	if request.method == 'GET':
+		message = 'Server Error'
+		level = id
+		if request.user.is_superuser :
+			question = Question.objects.get(question_id = id)
+			profile = UserProfile.objects.get(user = request.user)
+			user_question_obj = UserQuestion.objects.create(user = profile, question = question, level = 1)
+			user_question_obj.save()
+			print(user_question_obj)
+			serializers = UserQuestionSerializer(user_question_obj)
+			user_question_obj = serializers.data
+			return render(request,"task.html",{'question' : user_question_obj,'message' : message,'level':level})
+		return HttpResponse(message)
+
+
+
+
+
+
+
+
 # -------     alot question to the user     -------- #
 
 @login_required
@@ -52,7 +76,7 @@ def solve_question(request, level):
 		except ObjectDoesNotExist:
 			try:
 				queryset = Question.objects.filter(level = level)
-				if(queryset[0].status == 'UNLOCKED'):
+				if( queryset[0].status == 'UNLOCKED'):
 					mod_value = len(queryset)
 					index = UserQuestion.objects.filter(level = level).count() % mod_value
 					user_question_obj = UserQuestion.objects.create(user = user_profile_obj, level = level, question = queryset[index])
