@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+
+{% block title%}
+HackOn | Rules
+{% endblock %}
+
+
+
+
+{% block body %}
+<h1 class="rules">Rules for Survival</h1>
+<div class="questioncontent">
+	
+	<div class="rulebox">
+		<div class="quesbox2">
+			<p class="ques">
+			1. Last set of problem levels will be unlocked on 10th April.<br>
+			2. Every level have multiple questions. One of them will be allocated to each
+			user.
+			<br>
+			3. For every level maximum possible score is 100(except 10 th Level).<br>
+			4. Scoring at each level has following rules :<br>
+			 Every wrong attempt leads to a penalty of 1 marks.<br>
+			 On a successful submission of a user the maximum possible marks for
+			the corresponding question will be deducted by 5(it will not make
+			any impact on other questions of that level).<br>
+			 Time taken by the user will be considered from the time of unlocking
+			the level to the time of first successful submission.<br>
+			 Wrong attempts will be considered only before first successful
+			submission.<br>
+			 There is minimum threshold score for each level (Penalty will be
+			considered explicitly for final scoring).
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

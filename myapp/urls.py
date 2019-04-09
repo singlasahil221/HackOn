@@ -23,6 +23,7 @@ from myapp.views.question_views import *
 
 urlpatterns = [
     path('', Home),
+    path('rules/',rules),
     path('leaderboard/',Leaderboard),
     path('developers/', Developers),
     path('task/',tasks),

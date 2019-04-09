@@ -34,3 +34,5 @@ def Developers(request):
 	return render(request, 'developers.html',{})
 
 
+def rules(request):
+	return render(request,'rules.html',{})
