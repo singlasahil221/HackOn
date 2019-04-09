@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, FileResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from myapp.models.schema_file import *
@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import pytz
 import json
 from myapp.views.Level import *
-
+from hackon import settings
 utc=pytz.UTC
 
 
@@ -171,3 +171,8 @@ def solve_question(request, level):
 
 
 
+def download_file(request, filename):
+	with open(settings.STATIC_ROOT + '/assets1/'+filename, 'rb+') as fh:
+		response = HttpResponse(fh.read(), content_type="application/force-download")
+		return response
+	return HttpResponse("Server Error")
