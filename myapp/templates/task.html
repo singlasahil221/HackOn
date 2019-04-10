@@ -14,11 +14,7 @@ HackOn | Task {{question.level}}
 var csrf_token = '{{csrf_token}}';
 
 </script>
-{% if level == '7' %}
-<script>
-p=prompt("If you have dare, type the correct password, sharing on facebook won't make you winner of HackOn, You LOOSER :","");
-</script>
-{% endif %}
+
 {% endblock %}
 
 {% block body %}
@@ -40,6 +36,11 @@ p=prompt("If you have dare, type the correct password, sharing on facebook won't
         </button>
       </div>
     {% endifequal%}
+    {% if level == '7' %}
+<script>
+p=prompt("If you have dare, type the correct password, sharing on facebook won't make you winner of HackOn, You LOOSER :","");
+</script>
+{% endif %}
   {% endifequal%}
 {% endifnotequal%}
 
