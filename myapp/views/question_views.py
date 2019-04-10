@@ -118,6 +118,12 @@ def solve_question(request, level):
 				response = (len(answer) == 13)
 			elif level == "8":
 				response = solve7(time, answer, question_obj.answer)
+				
+			elif level == '9':
+				if user_question_obj.wrong_attempts == 5:
+					response = True
+				else:
+					response = False
 			else:
 				response = (answer == question_obj.answer)
 			#answer = lower(answer)
