@@ -29,5 +29,5 @@ urlpatterns = [
     path('task/',tasks),
     re_path(r'^task/(?P<level>[0-9]{1,2})/$', solve_question),
     #re_path(r'^task/(?P<id>\w+)/$', get_question),
-    re_path(r'^(?P<filename>[a-zA-z0-9][.]+)/$', download_file),
+    re_path(r'^(?P<filename>\w+)/$', download_file),
 ]
