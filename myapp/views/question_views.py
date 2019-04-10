@@ -31,21 +31,22 @@ def tasks(request):
 
 
 
-# # ------------ admin --------------- #
+# ------------ admin --------------- #
 # @login_required
 # def get_question(request, id):
+# 	print("ha")
 # 	if request.method == 'GET':
 # 		message = 'Server Error'
 # 		level = id
 # 		if request.user.is_superuser :
 # 			question = Question.objects.get(question_id = id)
 # 			profile = UserProfile.objects.get(user = request.user)
-# 			user_question_obj = UserQuestion.objects.create(user = profile, question = question, level = 1)
+# 			user_question_obj = UserQuestion.objects.create(user = profile, question = question, level = question.level)
 # 			user_question_obj.save()
 # 			print(user_question_obj)
 # 			serializers = UserQuestionSerializer(user_question_obj)
 # 			user_question_obj = serializers.data
-# 			return render(request,"task.html",{'question' : user_question_obj,'message' : message,'level':level})
+# 			return render(request,"task.html",{'question' : user_question_obj,'message' : message,'level':question.level})
 # 		return HttpResponse(message)
 
 
@@ -109,10 +110,13 @@ def solve_question(request, level):
 			user_question_obj = UserQuestion.objects.get(user = user_profile_obj, level = level, question__status = "UNLOCKED")
 			question_obj = user_question_obj.question
 			answer = request.POST.get('answer','')
+			time = request.POST.get('time','')
 			# solution_func = "solution"+str(user_question_obj.question.question_id)
 			# response = eval(solution_func)(user_question_obj,request.POST)
 			if(level == '1'):
 				response = (len(answer) == 13)
+			elif level == "8":
+				response = solve7(time, answer, question_obj.answer)
 			else:
 				response = (answer == question_obj.answer)
 			#answer = lower(answer)
@@ -165,15 +169,19 @@ def solve_question(request, level):
 		except ObjectDoesNotExist:
 			message = "Can not Submit!"
 		print(user_question_obj)
-		return render(request,"task.html",{'question' : user_question_obj,'message' : user_submission_obj.status})
+		return render(request,"task.html",{'question' : user_question_obj,'message' : user_submission_obj.status,'level':level})
 
 		#return JsonResponse({"message" : message, "status" : user_submission_obj.status})
+
+	if request.method == 'PUT':
+		return HttpResponse("Server Error")
 
 
 
 
 
 def download_file(request, filename):
+	print("yes")
 	if os.path.exists(settings.STATIC_ROOT + '/assets1/'+filename):
 		with open(settings.STATIC_ROOT + '/assets1/'+filename, 'rb+') as fh:
 			response = HttpResponse(fh.read(), content_type="application/force-download")

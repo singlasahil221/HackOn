@@ -9,13 +9,13 @@ HackOn | Task {{question.level}}
 {% block head%}
 
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" data-turbolinks-track="reload">
-
-{% ifequal question.question__id "21e7109faa2d4a6" %} 
-<script src="{% static 'js/jquery.min.js' %}" data-turbolinks-track="reload" i-am-here="qpjsdrlxgai" ></script>
-{% else %}
-<script src="{% static 'js/jquery.min.js' %}" data-turbolinks-track="reload"></script>
-{% endifequal %}
-<script src="{% static 'js/bootstrap.min.js' %}" data-turbolinks-track="reload" ></script>
+<script type="text/javascript">
+  var level = '{{question.level}}';
+var csrf_token = '{{csrf_token}}';
+{% if level == 7%}
+p=prompt("If you have dare, type the correct password, sharing on facebook won't make you winner of HackOn, You LOOSER :","");
+{% endif %}
+</script>
 
 {% endblock %}
 
@@ -62,11 +62,24 @@ HackOn | Task {{question.level}}
 
                 {%else%}
                 
-                  <div><h1>{{question.question__title}}</h1><h6><sub>Maximum Marks : {{ question.question__maximum_marks }} &nbsp;&nbsp;  Wrong attempts : {{question.wrong_attempts}}</sub></h6><br></div>
-                  <center><div id="statement"></div></center><br>
+                  <div>
+                    <h1>{{question.question__title}}</h1>
+                    <h6><sub>Maximum Marks : {{ question.question__maximum_marks }} &nbsp;&nbsp;  
+                    Wrong attempts : {{question.wrong_attempts}}</sub></h6>
+                    <br>
+                  </div>
+                  <center>
+                    <div id="statement"></div>
+                    <br>
+                    {% if level == 8 %}
+                      <span id="countdown">10</span>
+                    {% endif %}
+                    
+                  </center>
+                  <br>
                 
                   {% ifnotequal level "1" %}
-                  <form method="{% ifequal question.question_id '21e7109faa2d4a6' %}put{% else %}post{% endifequal %}" >
+                  <form method="{% ifequal question.question__id '720d7e2e8cbe427' %}put{% else %}post{% endifequal %}" >
                     {% csrf_token %}
                     <span for="mobile"><h4>Make Submission</h4></span>
                     
@@ -84,6 +97,24 @@ HackOn | Task {{question.level}}
     </div>
     <br><br><br>
 
+{% ifequal question.question__id "21e7109faa2d4a6" %} 
+<script src="{% static 'js/jquery.min.js' %}" data-turbolinks-track="reload" i-am-here="qpjsdrlxgai" ></script>
+{% else %}
+<script src="{% static 'js/jquery.min.js' %}" data-turbolinks-track="reload"></script>
+{% endifequal %}
+<script src="{% static 'js/bootstrap.min.js' %}" data-turbolinks-track="reload" ></script>
+
+{% if question.level == 1 %}
+<script type="text/javascript">
+a=window.location.host+"";
+b=a.length;c=4+((5*10)*2);
+d=String.fromCharCode(c,-(41-Math.floor(1806/13)),
+Math.sqrt(b-2)*29,(b*8)-29);
+</script>
+{% endif %}
+
+
+
 <script>
   
   window.onload = function(){
@@ -99,7 +130,5 @@ var myJSONList = (("{{question.question__statement|escapejs}}").replace(/&(l|g|q
                 }[b];
             }));
 $("#statement").append(myJSONList);
-var csrf_token = '{{csrf_token}}';
- 
 </script>
 {% endblock %}
