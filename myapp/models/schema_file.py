@@ -46,7 +46,7 @@ class Question(BaseModel):
 	question_id 	= 	models.CharField(max_length = 100,default=_generate_unique_uri)
 	title 			= 	models.CharField(max_length = 100)
 	statement 		= 	models.TextField(max_length = 10000)
-	answer			=	models.CharField(max_length = 100)
+	answer			=	models.CharField(max_length = 1000)
 	maximum_marks 	= 	models.IntegerField(default = 500)
 	minimum_marks 	=   models.IntegerField(default = 0)
 	status			= 	models.CharField(max_length = 20, choices = status_choices)
@@ -91,7 +91,7 @@ class UserSubmission(BaseModel):
 
 	user 			= 	models.ForeignKey(UserProfile,on_delete = models.CASCADE)
 	question		=   models.ForeignKey(Question, on_delete = models.CASCADE)
-	answer 			=	models.CharField(max_length = 100)
+	answer 			=	models.CharField(max_length = 1000)
 	status 			= 	models.CharField(max_length = 100, choices = status_choices)
 	marks 			= 	models.PositiveIntegerField(default = 0)
 	class Meta:

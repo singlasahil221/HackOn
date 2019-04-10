@@ -111,6 +111,7 @@ def solve_question(request, level):
 			question_obj = user_question_obj.question
 			answer = request.POST.get('answer','')
 			time = request.POST.get('time','')
+			print(time)
 			# solution_func = "solution"+str(user_question_obj.question.question_id)
 			# response = eval(solution_func)(user_question_obj,request.POST)
 			if(level == '1'):
@@ -168,7 +169,6 @@ def solve_question(request, level):
 			user_question_obj = serializers.data
 		except ObjectDoesNotExist:
 			message = "Can not Submit!"
-		print(user_question_obj)
 		return render(request,"task.html",{'question' : user_question_obj,'message' : user_submission_obj.status,'level':level})
 
 		#return JsonResponse({"message" : message, "status" : user_submission_obj.status})
@@ -181,7 +181,6 @@ def solve_question(request, level):
 
 
 def download_file(request, filename):
-	print("yes")
 	if os.path.exists(settings.STATIC_ROOT + '/assets1/'+filename):
 		with open(settings.STATIC_ROOT + '/assets1/'+filename, 'rb+') as fh:
 			response = HttpResponse(fh.read(), content_type="application/force-download")
