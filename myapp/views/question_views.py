@@ -24,9 +24,10 @@ def tasks(request):
 
 	all_taks_status = Question.objects.all().values('level','title','status','maximum_marks').distinct('level')
 	n_hacked_tasks = UserQuestion.objects.filter(user=user_profile_obj, marks_obtained__gt = 0)
+	n_hacked = n_hacked_tasks.values_list('level',flat=True)
 	hacked_tasks = n_hacked_tasks.values('question')
 	hacked_tasks = Question.objects.filter(pk__in = hacked_tasks).values('level','title','status','maximum_marks').distinct('level')
-	return render(request, 'all_tasks.html', {'task':all_taks_status,'hacked_tasks':hacked_tasks, 'hacked':n_hacked_tasks})
+	return render(request, 'all_tasks.html', {'task':all_taks_status,'hacked_tasks':n_hacked_tasks, 'hacked':n_hacked})
 
 
 
