@@ -144,9 +144,9 @@ def solve_question(request, level):
 					user_question_obj.time_taken = datetime.now().replace(tzinfo=None) - user_question_obj.question.updated_at.replace(tzinfo=None)
 
 					#update total profile score
-					user_profile_obj.total_score += marks_obtained
-					user_profile_obj.total_time_taken += user_question_obj.time_taken
-					user_profile_obj.total_wrong_attempts += user_question_obj.wrong_attempts
+					#user_profile_obj.total_score += marks_obtained
+					#user_profile_obj.total_time_taken += user_question_obj.time_taken
+					#user_profile_obj.total_wrong_attempts += user_question_obj.wrong_attempts
 
 
 					#update maximum marks of the question on the correct submission
