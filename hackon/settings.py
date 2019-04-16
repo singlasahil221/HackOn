@@ -107,10 +107,10 @@ WSGI_APPLICATION = 'hackon.wsgi.application'
 DATABASES = {
     'default': {         
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd861vu0cild97b',
-        'USER': 'dtxwhcplztigkd',
-        'PASSWORD': '00a8f205ad3514043a629139c9348fd4c3a0dc983a5d77f33fbe0e0abde0ad0d',
-        'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
+        'NAME': os.environ.get('DB_NAME', ''),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASS', ''),
+        'HOST': os.environ.get('DB_HOST', ''),
         'PORT': '5432',
     }
 }
@@ -176,5 +176,5 @@ MEDIA_URL = '/media/'
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/task/'
 LOGOUT_REDIRECT_URL = '/'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='260489749062-krcm5u7oloejiv6mc1iin3ursvl6lktg.apps.googleusercontent.com' 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ZFIyaJtkEBFdaeGzPtUl1cor'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =os.environ.get('G_AUTH_KEY', '') 
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('G_AUTH_SECRET', '')
