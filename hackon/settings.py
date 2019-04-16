@@ -91,19 +91,6 @@ WSGI_APPLICATION = 'hackon.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-
-# DATABASES = {
-#     'default': {         
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd6i181nj6s9jiu',
-#         'USER': 'nbjexgcpybsbcc',
-#         'PASSWORD': '783ab46b6b511c2cd739494a23271bd16aa9b30c62996a44beb265504f44f779',
-#         'HOST': 'ec2-23-23-226-190.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
-
 DATABASES = {
     'default': {         
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
